@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ecomeal-8d6a3": {
+      "hosting": {
+        "ecomeals": [
+          "ecomeal-8d6a3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ecomeal-8d6a3"
+  }
+}

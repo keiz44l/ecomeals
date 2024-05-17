@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "ecomeals",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

@@ -98,8 +98,28 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "ecomeals:build:production",
+              "serveTarget": "ecomeals:serve:production"
+            },
+            "development": {
+              "buildTarget": "ecomeals:build:development",
+              "serveTarget": "ecomeals:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
