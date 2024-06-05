@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Auth, signInWithEmailAndPassword} from "@angular/fire/auth";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,23 +16,19 @@ export class SignInComponent {
   public auth = inject(Auth);
   public email: string = "";
   public password: string = "";
+  public errorMessage = "";
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public signIn() {
-    
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      console.log(user);
-      // ...
-    })
-    .catch((error) => {
-      // To finish -> handle error in html
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
+    signInWithEmailAndPassword(this.auth, this.email, this.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        this.router.navigate(['/']);
+      })
+      .catch((error) => {
+        this.errorMessage = error.message;
+      });
   }
 }

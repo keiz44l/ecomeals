@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 // My components
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -37,6 +38,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync()

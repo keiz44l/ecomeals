@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,9 +18,9 @@ export class SignUpComponent{
   public email: string = "";
   public password: string = "";
   public validatePassword: string = "";
+  public errorMessage = "";
 
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   public signUp() {
     if (this.password === this.validatePassword) {
@@ -27,19 +28,14 @@ export class SignUpComponent{
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
-        // ...
+        this.router.navigate(['/']);
       })
       .catch((error) => {
-        // To finish -> handle error in html
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        this.errorMessage = error.message;
       });
     }
     else {
-      // To finish -> handle error in html
-      const errorCode = "passwords-do-not-match";
+      this.errorMessage = "passwords-do-not-match";
     }
   }
 }

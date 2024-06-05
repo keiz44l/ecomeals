@@ -1,18 +1,21 @@
 <body>
     <form id="sign-up-form" (ngSubmit)="signUp()">
         <h1>Sign Up</h1>
-        <mat-form-field>
+        <mat-card *ngIf="errorMessage;" id="errorMessage">
+            <mat-card-content>Error : {{errorMessage}}</mat-card-content>
+        </mat-card>          
+        <mat-form-field [style.width.px]=300>
             <mat-label>Enter your email</mat-label>
             <input matInput required [(ngModel)]="email" type="email" name="email">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field [style.width.px]=300>
             <mat-label>Enter your password</mat-label>
             <input matInput required [(ngModel)]="password" [type]="hide ? 'password' : 'text'" name="password">
             <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field [style.width.px]=300>
             <mat-label>Validate your password</mat-label>
             <input matInput required [(ngModel)]="validatePassword" [type]="hide ? 'password' : 'text'" name="validatePassword">
             <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">

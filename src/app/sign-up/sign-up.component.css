@@ -14,3 +14,9 @@ body{
     border: 1px solid black;
     border-radius: 10px;
   }
+
+  #errorMessage{
+    color: red;
+    margin-bottom: 10px;
+    background-color: beige;
+  }

@@ -7,6 +7,5 @@ import { Auth } from '@angular/fire/auth';
   styleUrl: './app.component.css'
 })
 export class AppComponent{
-  private auth = inject(Auth);
   title = 'ecomeals';
 }
