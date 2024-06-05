@@ -1,0 +1,17 @@
+<body>
+    <form id="sign-in-form" (ngSubmit)="signIn()">
+        <h1>Sign Up</h1>
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput required [(ngModel)]="email" type="email" name="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput required [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Sign In</button>
+    </form>
+</body>
