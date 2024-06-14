@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Auth, signInWithEmailAndPassword} from "@angular/fire/auth";
+import { Auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "@angular/fire/auth";
 import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-sign-in',
@@ -17,18 +19,41 @@ export class SignInComponent {
   public email: string = "";
   public password: string = "";
   public errorMessage = "";
+  public isAuth = false;
+  public user: any;
 
   constructor(private router: Router) { }
 
   public signIn() {
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential) => {
-        // Signed in
+        if (!userCredential.user.emailVerified) {
+          this.errorMessage = "Please verify your email address before signing in.";
+        } else {
+          // Signed in
         const user = userCredential.user;
         this.router.navigate(['/']);
+        }
       })
       .catch((error) => {
         this.errorMessage = error.message;
       });
   }
-}
+
+    public signInWithGoogle() {
+      signInWithPopup(this.auth, new GoogleAuthProvider())
+      .then((userCredential) => {
+        // Signed in
+        this.user = userCredential.user;
+        this.isAuth = true;
+        this.router.navigate(['/']);
+      })
+      .catch((error) => {
+        this.errorMessage = error.message;
+      });
+    }
+
+    public isAuthenticated(): boolean{
+      return this.isAuth;
+    }
+  }

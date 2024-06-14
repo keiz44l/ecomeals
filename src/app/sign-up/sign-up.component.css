@@ -1,16 +1,14 @@
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+#sign-up{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 #sign-up-form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    margin-top: 50px;
-    padding: 20px;
+    padding: 50px;
     border: 1px solid black;
     border-radius: 10px;
   }
@@ -19,4 +17,28 @@ body{
     color: red;
     margin-bottom: 10px;
     background-color: beige;
+  }
+
+  #verificationMessage{
+    color: green;
+    margin-bottom: 10px;
+    background-color: beige;
+  }
+
+  #signin{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #signin button{
+    margin-top: 10px;
+  }
+
+  #signInWithGoogle{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }

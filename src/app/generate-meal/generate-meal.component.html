@@ -1,0 +1,21 @@
+<mat-card id="generateMeal">
+    <h1>Generate Meal</h1>
+    <button mat-raised-button color="accent" >Filter</button>
+    <mat-form-field [style.width.px]=300>
+        <mat-label>Enter your maximum price</mat-label>
+        <input matInput required [(ngModel)]="maxPrice" type="number" name="maxPrice">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="generateMeal()">Generate Meal</button>
+    <mat-card id="mealGenerated">
+        <mat-card-content *ngIf="mealGenerated;">
+            <h2>Meal Generated</h2>
+            <p>{{mealName}}</p>
+            <p>{{totalPrice}}</p>
+            <p>{{mealIngredients}}</p>
+            <p>{{mealInstructions}}</p>
+            <mat-card-actions>
+                <button mat-raised-button color="accent" (click)="saveMeal()">Save Meal</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</mat-card>

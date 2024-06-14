@@ -1,16 +1,40 @@
-body{
+#sign-in{
     display: flex;
     flex-direction: column;
     align-items: center;
+    size : 100%;
   }
+
 
 #sign-in-form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    margin-top: 50px;
-    padding: 20px;
+    padding: 50px;
     border: 1px solid black;
     border-radius: 10px;
+  }
+
+  #errorMessage{
+    color: red;
+    margin-bottom: 10px;
+    background-color: beige;
+  }
+
+  #signup{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #signup button{
+    margin-top: 10px;
+  }
+
+  #signInWithGoogle{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }

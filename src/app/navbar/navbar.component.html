@@ -1,0 +1,12 @@
+<mat-toolbar>Menu</mat-toolbar>
+<mat-nav-list>
+  <mat-list-item *ngFor="let item of navItems" [routerLink]="item.route">
+    <h4 matLine>{{item.name}}</h4>
+  </mat-list-item>
+  <mat-list-item *ngIf="">
+    <h4 matLine>My preferences</h4>
+  </mat-list-item>
+  <mat-list-item id="login" [routerLink]="'/sign-in'">
+    <h4 matLine>Login</h4>
+  </mat-list-item>
+</mat-nav-list>

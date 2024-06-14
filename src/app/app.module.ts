@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,10 +16,21 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { SidebarModule } from 'primeng/sidebar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 // My components
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { GenerateMealComponent } from './generate-meal/generate-meal.component';
+import { CleanFridgeComponent } from './clean-fridge/clean-fridge.component';
+import { WeeklyMealsGenerationComponent } from './weekly-meals-generation/weekly-meals-generation.component';
+import { MealPreferencesComponent } from './meal-preferences/meal-preferences.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -26,6 +38,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
     AppComponent,
     SignUpComponent,
     SignInComponent,
+    GenerateMealComponent,
+    CleanFridgeComponent,
+    WeeklyMealsGenerationComponent,
+    MealPreferencesComponent,
+    NavbarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,10 +56,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    SidebarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })

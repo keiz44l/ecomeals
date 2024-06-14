@@ -1,4 +1,4 @@
-<body>
+<div id="sign-in">
     <form id="sign-in-form" (ngSubmit)="signIn()">
         <h1>Sign In</h1>
         <mat-card *ngIf="errorMessage;" id="errorMessage">
@@ -17,4 +17,9 @@
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Sign In</button>
     </form>
-</body>
+    <button mat-raised-button color="accent" (click)="signInWithGoogle()" id="signInWithGoogle">Sign In with Google</button>
+    <div id="signup">
+        <i>Don't have an account?</i>
+        <button mat-raised-button color="primary" routerLink="/sign-up">Sign Up</button>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { getAuth } from "firebase/auth";
 
 @Component({
   selector: 'app-root',

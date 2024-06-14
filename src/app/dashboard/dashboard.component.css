@@ -1,0 +1,9 @@
+#dashboard {
+  padding: 5em;
+  align-items: center;
+}
+
+p{
+    font-size: 1em;
+    text-decoration: underline;
+}

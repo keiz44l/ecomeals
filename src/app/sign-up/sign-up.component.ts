@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from "@angular/fire/auth";
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +19,7 @@ export class SignUpComponent{
   public password: string = "";
   public validatePassword: string = "";
   public errorMessage = "";
+  public verificationMessage = "";
 
   constructor(private router: Router) { }
 
@@ -26,17 +27,31 @@ export class SignUpComponent{
     if (this.password === this.validatePassword) {
       createUserWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential) => {
-        // Signed up
+        // Send email verification
+        this.errorMessage = "";
         const user = userCredential.user;
-        this.router.navigate(['/']);
+        sendEmailVerification(user)
+        this.verificationMessage = "A verification email has been sent to your email address. Please verify your email address to sign in."
       })
       .catch((error) => {
         this.errorMessage = error.message;
       });
+    } else {
+      this.errorMessage = "Passwords do not match";
     }
-    else {
-      this.errorMessage = "passwords-do-not-match";
-    }
+  }
+      
+
+  public signInWithGoogle() {
+    signInWithPopup(this.auth, new GoogleAuthProvider())
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      //this.router.navigate(['/']);
+    })
+    .catch((error) => {
+      this.errorMessage = error.message;
+    });
   }
 }
 
