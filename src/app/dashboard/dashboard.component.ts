@@ -21,6 +21,10 @@ export class DashboardComponent {
       if (value) {
         this.user = this.auth.currentUser;
         this.name = this.user?.displayName;
+
+        if (this.name === null) {
+          this.name = this.user?.email;
+        }
       }
     });
   }

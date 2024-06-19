@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'weekly-meals-generation', component: WeeklyMealsGenerationComponent},
   { path: 'clean-fridge', component: CleanFridgeComponent},
-  { path: 'meal-preferences', component: MealPreferencesComponent},
+  { path: 'meal-preferences', component: MealPreferencesComponent, canActivate: [authGuard]},
   { path: '', component: DashboardComponent},
   
 ];

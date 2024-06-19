@@ -31,6 +31,7 @@ export class WeeklyMealsGenerationComponent {
   public numberMeals: any;
   meals: any = [];
   inProgress: boolean = false;
+  preferences: any;
 
 
   constructor(
@@ -77,13 +78,15 @@ export class WeeklyMealsGenerationComponent {
 
   public async generateWeeklyMealsByPreferences() {
     this.inProgress = true;
+    this.preferences = await this.dataService.getPreferences(this.userId);
     if (this.buyIngredients) {
       this.prompt = this.promptMoreIngredients + ". Note that you can add more ingredients than the ones indicated;";
     }
     this.prompt = this.prompt + "constraints : " + "ingredients I have : " + JSON.stringify(this.ingredients) + " ; " + "number of people (they eat good) : " + this.numberPeople + " ; + maximum price : " + this.maxPrice + " ; currency : " + "euros" + " ;";
     this.prompt = this.prompt + "number of meals : " + this.numberMeals + " ;";
+    this.prompt = this.prompt + "other constraints : " + this.preferences + " ;";
     console.log(this.prompt);
-    this.apiService.generateByPreferences(this.userId, this.prompt).subscribe((data: any) => {
+    this.apiService.generateText(this.prompt).subscribe((data: any) => {
       this.mealsGenerated = data.candidates[0].content.parts[0].text
       console.log(this.mealsGenerated);
       this.mealsGenerated = this.mealsGenerated.replace('```json', '');

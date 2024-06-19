@@ -52,7 +52,10 @@
             <p>- {{step}}</p>
         </div>
         <div id="buttons">
-            <button mat-raised-button color="accent" (click)="saveMeal()">Save Meal</button>
+            <button mat-fab extended (click)="saveMeal()">
+                <i class="material-icons">favorite</i>
+                Favorite
+            </button>
             <button mat-raised-button color="accent" *ngIf="!user" (click)="cleanFridge()">Generate another Meal</button>
             <button mat-raised-button color="accent" *ngIf="user" (click)="cleanFridgeByPreferences()">Generate another Meal</button>
             <button mat-raised-button color="accent" (click)="goBack()">Change parameters and generate</button>

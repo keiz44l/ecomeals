@@ -11,7 +11,7 @@ import { DataService } from '../services/data.service';
 export class CleanFridgeComponent {
 
     public prompt = 'Your response should be strictly a json format (name, ingredients[name, amount, unit], instructions[instructions]). Generate a random meal with the following ingredients and constraints, respect it fully:';
-    public promptMoreIngredients = 'Your response should be strictly a json format (name, ingredients[name, amount, unit, totalPrice(*1.2) if new ingredient], instructions[instructions], totalPrice). Generate a random meal with actual prices in France (not especially french meals), with the following following ingredients and constraints, respect it fully';
+    public promptMoreIngredients = 'Your response should be strictly a json format (name, ingredients[name, amount, unit, totalPrice(*1.2) if ingredient not in ingredients], instructions[instructions], totalPrice). Generate a random meal with actual prices in France (not especially french meals), with the following following ingredients and constraints, respect it fully';
     
     public ingredients: any = [];
     public ingredient: any;

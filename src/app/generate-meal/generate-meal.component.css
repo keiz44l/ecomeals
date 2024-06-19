@@ -3,9 +3,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 10em;
     background-color: #625D52;
     color: whitesmoke;
+    border-radius: 2%;
+    height:700px;
+    width: 700px;
 }
 
 button {

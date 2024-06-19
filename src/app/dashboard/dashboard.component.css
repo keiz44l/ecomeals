@@ -1,16 +1,23 @@
 #dashboard {
   align-items: center;
-  padding: 5em;
+  border-radius: 2%;
+  height:700px;
+  width: 700px;
 }
 
 p{
     font-size: 1em;
     text-decoration: underline;
     color: whitesmoke;
-    font-family: 'Franklin Gothic Medium'
+    font-family: 'Franklin Gothic Medium';
+    margin: 3%;
 }
 
-h3{
+#text {
+  text-decoration: none;
+}
+
+h2, h4{
     color: white;
 }
 

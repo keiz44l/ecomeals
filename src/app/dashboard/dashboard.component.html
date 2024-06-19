@@ -1,6 +1,12 @@
 <mat-card id="dashboard">
-    <h3 *ngIf="user">Welcome to Ecomeals, {{name}} !</h3>
-    <h3 *ngIf="!user">Welcome to Ecomeals !</h3>
+    <h2 *ngIf="user">Welcome to Ecomeals, {{name}} !</h2>
+    <h2 *ngIf="!user">Welcome to Ecomeals !</h2>
+    <h4 id="text">What do you want to do ?</h4>
+    <p id="text">In this website, you can generate random meals in three ways. 
+    If you don't know what to eat today and have an empty fridge, 
+    if you want to generate a meal with your leftovers or if you need to plan your next week recipes,
+    this website suits you. Note that if you need to specify allergies, diets, or calorie ranges, you need
+    to sign up.</p>
     <p>You need some help to chose your lunch ?</p>
     <button mat-raised-button color="accent" routerLink="/generate-meal">Generate Meal</button>
     <p>You have some leftovers and need to make something with it ?</p>
