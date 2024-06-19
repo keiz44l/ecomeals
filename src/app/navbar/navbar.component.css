@@ -7,18 +7,45 @@
   }
   
   mat-toolbar {
-    background: #3f51b5;
+    background-color: #625D52;
     color: white;
   }
   
   mat-list-item {
     cursor: pointer;
     align-items: center;
+    justify-content: center;
   }
   
   mat-list-item:hover {
-    background-color: #e0e0e0;
+    background-color: #31302E;
   }
+
+  h4, mat-icon{
+      color: white;
+  }
+
+  mat-icon, i{
+      margin-right: 10px;
+  }
+
+  #logout, #login{
+      position: absolute;
+      bottom: 0;
+  }
+
+  mat-list-item div{
+      color: white;
+  }
+
+  mat-list-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+
 
 
   

@@ -1,9 +1,22 @@
 #dashboard {
-  padding: 5em;
   align-items: center;
+  padding: 5em;
 }
 
 p{
     font-size: 1em;
     text-decoration: underline;
+    color: whitesmoke;
+    font-family: 'Franklin Gothic Medium'
 }
+
+h3{
+    color: white;
+}
+
+mat-card {
+  background-color: #625D52;
+  transition: none !important;
+  box-shadow: none !important;
+}
+

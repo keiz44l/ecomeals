@@ -4,13 +4,17 @@
   
   mat-sidenav {
     width: 250px;
+    background-color: #625D52;
   }
   
   mat-sidenav-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+  }
+
+  mat-sidenav-container {
+    background-color: #31302E;
   }
 
   

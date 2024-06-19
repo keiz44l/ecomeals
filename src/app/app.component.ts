@@ -1,11 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { getAuth } from "firebase/auth";
+import { Auth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent{
+export class AppComponent {
   title = 'ecomeals';
+
+  constructor() { }
+
+
 }

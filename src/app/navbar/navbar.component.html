@@ -1,12 +1,46 @@
-<mat-toolbar>Menu</mat-toolbar>
+<mat-toolbar *ngIf="isLogged">Welcome to Ecomeals</mat-toolbar>
+<mat-toolbar *ngIf="!isLogged">Welcome, Anonymous</mat-toolbar>
 <mat-nav-list>
-  <mat-list-item *ngFor="let item of navItems" [routerLink]="item.route">
-    <h4 matLine>{{item.name}}</h4>
+  <mat-list-item id="home" [routerLink]="'/'">
+    <div class="mat-list-item-content">
+      <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="home"></mat-icon>
+      Home
+    </div>
   </mat-list-item>
-  <mat-list-item *ngIf="">
-    <h4 matLine>My preferences</h4>
+  <mat-list-item id="generate-meal" [routerLink]="'/generate-meal'">
+    <div class="mat-list-item-content">
+      <mat-icon aria-hidden="false" aria-label="generate meal icon" fontIcon="restaurant"></mat-icon>
+      Generate a meal
+    </div>
   </mat-list-item>
-  <mat-list-item id="login" [routerLink]="'/sign-in'">
-    <h4 matLine>Login</h4>
+  <mat-list-item id="clean-fridge" [routerLink]="'/clean-fridge'">
+    <div class="mat-list-item-content">
+      <i class="material-icons">kitchen</i>
+      Clean your fridge
+    </div>
+  </mat-list-item>
+  <mat-list-item id="weekly-meals-generation" [routerLink]="'/weekly-meals-generation'">
+    <div class="mat-list-item-content">
+      <i class="material-icons">calendar_month</i>
+      Weekly recipes
+    </div>
+  </mat-list-item>
+  <mat-list-item *ngIf="isLogged" id="preferences" [routerLink]="'/meal-preferences'">
+    <div class="mat-list-item-content">
+      <i class="material-icons">settings</i>
+      Meal preferences
+    </div>
+  </mat-list-item>
+  <mat-list-item *ngIf="!isLogged" id="login" [routerLink]="'/sign-in'">
+    <div class="mat-list-item-content">
+      <i class="material-icons">login</i>
+      Login
+    </div>
+  </mat-list-item>
+  <mat-list-item *ngIf="isLogged" id="logout" (click)="logout()">
+    <div class="mat-list-item-content">
+      <i class="material-icons">logout</i>
+      Logout
+    </div>
   </mat-list-item>
 </mat-nav-list>

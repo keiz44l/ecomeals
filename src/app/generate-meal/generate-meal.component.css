@@ -1,7 +1,11 @@
 #generateMeal {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 10em;
+    background-color: #625D52;
+    color: whitesmoke;
 }
 
 button {
@@ -9,8 +13,40 @@ button {
     margin-bottom: 10px;
 }
 
-mat-card-content {
+mat-card-content, #mealGenerated {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+mat-card {
+    background-color: #625D52;
+    transition: none !important;
+    box-shadow: none !important;
+}
+
+h1{
+color: white;
+font-family: 'Franklin Gothic Medium';
+}
+
+p, li {
+    margin: 0;
+    padding: 0;
+}
+
+#mealGenerated {
+    color : whitesmoke;
+    padding: 2em;
+    background-color: #625D52; 
+}
+
+#mealGenerated button {
+    margin-right : 10px;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
     align-items: center;
 }

@@ -1,21 +1,43 @@
-<mat-card id="generateMeal">
+<mat-card *ngIf="!mealGenerated" id="generateMeal">
     <h1>Generate Meal</h1>
-    <button mat-raised-button color="accent" >Filter</button>
     <mat-form-field [style.width.px]=300>
         <mat-label>Enter your maximum price</mat-label>
         <input matInput required [(ngModel)]="maxPrice" type="number" name="maxPrice">
     </mat-form-field>
-    <button mat-raised-button color="accent" (click)="generateMeal()">Generate Meal</button>
-    <mat-card id="mealGenerated">
-        <mat-card-content *ngIf="mealGenerated;">
-            <h2>Meal Generated</h2>
-            <p>{{mealName}}</p>
-            <p>{{totalPrice}}</p>
-            <p>{{mealIngredients}}</p>
-            <p>{{mealInstructions}}</p>
-            <mat-card-actions>
-                <button mat-raised-button color="accent" (click)="saveMeal()">Save Meal</button>
-            </mat-card-actions>
-        </mat-card-content>
-    </mat-card>
+    <mat-form-field [style.width.px]=300>
+        <mat-label>For how many people ?</mat-label>
+        <input matInput required [(ngModel)]="numberPeople" type="number" name="numberPeople">
+    </mat-form-field>
+    <button mat-raised-button color="accent" *ngIf="!user" (click)="generateMeal()">Generate Meal</button>
+    <button mat-raised-button color="accent" *ngIf="user" (click)="generateMealByPreferences()">Generate Meal</button>
+    <div *ngIf="inProgress">
+        <p>Generating your meal... Wait a moment</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
 </mat-card>
+
+<div *ngIf="mealGenerated" id="mealGenerated">
+    <div *ngIf="mealGenerated;">
+        <h2>Meal Generated</h2>
+        <h3>{{mealName}}</h3>
+        <p>Total price : {{totalPrice}} €</p>
+        <h3>Ingredients</h3>
+        <div *ngFor="let ingredient of mealIngredients" id="ingredients">
+            <p>- {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}} , price : {{ingredient.totalPrice}} €</p>
+        </div>
+        <h3>Instructions</h3>
+        <div *ngFor="let step of mealInstructions" id="instructions">
+            <p>- {{step}}</p>
+        </div>
+        <div id="buttons">
+            <button mat-raised-button color="accent" (click)="saveMeal()">Save Meal</button>
+            <button mat-raised-button color="accent" *ngIf="!user" (click)="generateMeal()">Generate another Meal</button>
+            <button mat-raised-button color="accent" *ngIf="user" (click)="generateMealByPreferences()">Generate another Meal</button>
+            <button mat-raised-button color="accent" (click)="goBack()">Change parameters and generate</button>
+        </div>
+        <div *ngIf="inProgress">
+            <p>Generating your meal... Wait a moment</p>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </div >
+</div>

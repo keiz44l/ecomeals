@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { authGuard } from '../auth.guard';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent{
+
+  isLogged: boolean = false;
+  user:any;
+
+
   navItems = [
     { name: 'Dashboard', icon: '', route: '/'},
     { name: 'Generate a meal', icon: '', route: '/generate-meal' },
@@ -14,7 +20,21 @@ export class NavbarComponent {
     { name: 'Weekly Meals Generation', icon: '', route: '/weekly-meals-generation'},
   ];
 
-  constructor() { }
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.authService.isLogged.subscribe((value) => {
+      this.isLogged = value;
+    });
+  }
+
+  logout() {
+    this.authService.signOut();
+    this.router.navigate(['/']);
+  }
+
+
   
 
 }

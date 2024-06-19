@@ -20,6 +20,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 // My components
@@ -60,7 +61,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SidebarModule,
     MatSidenavModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressBarModule
   ],
   providers: [
     provideAnimationsAsync(),

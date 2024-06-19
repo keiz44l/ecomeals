@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from "@angular/fire/auth";
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,8 @@ export class SignUpComponent{
   public errorMessage = "";
   public verificationMessage = "";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ds: DataService) { 
+  }
 
   public signUp() {
     if (this.password === this.validatePassword) {
@@ -32,6 +34,7 @@ export class SignUpComponent{
         const user = userCredential.user;
         sendEmailVerification(user)
         this.verificationMessage = "A verification email has been sent to your email address. Please verify your email address to sign in."
+        this.ds.pushUser(user.uid);
       })
       .catch((error) => {
         this.errorMessage = error.message;
@@ -47,7 +50,8 @@ export class SignUpComponent{
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      //this.router.navigate(['/']);
+      this.ds.pushUser(user.uid);
+      this.router.navigate(['/']);
     })
     .catch((error) => {
       this.errorMessage = error.message;

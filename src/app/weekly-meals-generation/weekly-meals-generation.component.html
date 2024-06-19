@@ -1,1 +1,68 @@
-<p>weekly-meals-generation works!</p>
+<div *ngIf="!mealsGenerated" id="weeklyPlan">
+    <h1>Generate your weekly recipes</h1>
+    <div id="my-ingredients">
+        <h2>Add new ingredient</h2>
+        <div id="add-ingredients">
+            <input type="text" [(ngModel)]="name" name="name" placeholder="Enter an ingredient">
+            <input type="text" [(ngModel)]="amount" name="amount" placeholder="Enter the amount">
+            <input type="text" [(ngModel)]="unit" name="unit" placeholder="Enter the unit">
+        </div>  
+        <button mat-raised-button color="accent" (click)="addIngredient()">Add</button>
+        <h3>Your ingredients : </h3>
+        <div *ngFor="let ingredient of ingredients" id="ingredients">
+            <p>- {{ingredient.name}} : {{ingredient.amount}} {{ingredient.unit}}</p>
+            <i class="material-icons" (click)="deleteIngredient(ingredient)">delete</i>
+        </div>
+        <br>
+    </div>
+
+    <div id="moreIngredients">
+        <p>Do you want to buy other ingredients ?</p>
+        <input type="checkbox" [(ngModel)]="buyIngredients" name="buyIngredients" />
+    </div>
+    <mat-form-field *ngIf="buyIngredients" [style.width.px]=300>
+        <mat-label>Enter your maximum price</mat-label>
+        <input matInput [(ngModel)]="maxPrice" type="number" name="maxPrice">
+    </mat-form-field>
+
+    <mat-form-field [style.width.px]=300>
+        <mat-label>For how many people ?</mat-label>
+        <input matInput required [(ngModel)]="numberPeople" type="number" name="numberPeople">
+    </mat-form-field>
+    
+    <mat-form-field [style.width.px]=300>
+        <mat-label>Number of meals in the week</mat-label>
+        <input matInput required [(ngModel)]="numberMeals" type="numberMeals" name="numberMeals">
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" *ngIf="!user" (click)="generateWeeklyMeals()">Generate a meal</button>
+    <button mat-raised-button color="accent" *ngIf="user" (click)="generateWeeklyMealsByPreferences()">Generate a meal by preferences</button>
+    <div *ngIf="inProgress">
+        <p>Generating your meal... Wait a moment</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+</div>
+
+<div style="overflow-y: scroll; height:800px;" *ngIf="mealsGenerated" id="mealsGenerated">
+    <div *ngIf="mealsGenerated;">
+        <h2>Meals Generated</h2>
+        <div *ngFor="let meal of meals" id="meal">
+            <h5>{{meal.name}}</h5>
+            <p>Total price : {{meal.totalPrice}} €</p>
+            <h5>Ingredients</h5>
+            <div *ngFor="let ingredient of meal.totalIngredients" id="ingredients">
+                <p>- {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}}</p>
+            </div>
+        </div>
+        <div id="buttons">
+            <button mat-raised-button color="accent" *ngIf="!user" (click)="generateWeeklyMeals()">Generate other Meals</button>
+            <button mat-raised-button color="accent" *ngIf="user" (click)="generateWeeklyMealsByPreferences()">Generate other Meals</button>
+            <button mat-raised-button color="accent" (click)="goBack()">Change parameters and generate</button>
+        </div>
+        <div *ngIf="inProgress">
+            <p>Generating your meal... Wait a moment</p>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </div >
+</div>

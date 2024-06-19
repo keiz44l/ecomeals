@@ -1,1 +1,32 @@
-<p>meal-preferences works!</p>
+<div class="meal-preferences">
+    <h2>My Meal Preferences</h2>
+    <form (ngSubmit)="savePreferences()">
+      <div class="form-group">
+        <label>Calories range</label>
+        <input type="number" [(ngModel)]="preferences.caloriesMin" name="caloriesMin" placeholder="Calories min per meal"/>
+        <input type="number" [(ngModel)]="preferences.caloriesMax" name="caloriesMax" placeholder="Calories max per meal" />
+      </div>
+      
+      <div class="form-group">
+        <label>Max ingredients per meal</label>
+        <input type="number" [(ngModel)]="preferences.maxIngredients" name="maxIngredients" placeholder="Up to" />
+      </div>
+      
+      <div class="form-group">
+        <label>Diet</label>
+        <div *ngFor="let diet of diets">
+          <input type="checkbox" [(ngModel)]="preferences.diet[diet]" [name]="'diet_' + diet" /> {{diet}}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Allergies</label>
+        <div *ngFor="let allergy of allergies">
+          <input type="checkbox" [(ngModel)]="preferences.allergies[allergy]" [name]="'allergy_' + allergy" /> {{allergy}}
+        </div>
+      </div>
+      <button mat-raised-button color="accent">Save Preferences</button>
+    </form>
+
+  </div>
+  

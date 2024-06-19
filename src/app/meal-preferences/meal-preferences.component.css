@@ -1,0 +1,28 @@
+
+.meal-preferences h2{
+    text-align: center;
+}
+
+.meal-preferences{
+    color: whitesmoke;
+    background-color: #625D52;
+    padding: 1em;
+}
+
+.form-group {
+    margin : 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}

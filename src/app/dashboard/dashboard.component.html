@@ -1,4 +1,6 @@
 <mat-card id="dashboard">
+    <h3 *ngIf="user">Welcome to Ecomeals, {{name}} !</h3>
+    <h3 *ngIf="!user">Welcome to Ecomeals !</h3>
     <p>You need some help to chose your lunch ?</p>
     <button mat-raised-button color="accent" routerLink="/generate-meal">Generate Meal</button>
     <p>You have some leftovers and need to make something with it ?</p>
@@ -6,5 +8,6 @@
     <p>You need help to make your weekly groceries list ?</p>
     <button mat-raised-button color="accent" routerLink="/weekly-meals-generation">Weekly meals generator</button>
     <p>You have some allergies or particular diets ?</p>
-    <button mat-raised-button color="accent" routerLink="/meal-preferences">My preferences</button>
+    <button *ngIf="user" mat-raised-button color="accent" routerLink="/meal-preferences">My preferences</button>
+    <button *ngIf="!user" mat-raised-button color="accent" routerLink="/sign-in">My preferences</button>
 </mat-card>

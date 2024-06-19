@@ -3,6 +3,10 @@
     flex-direction: column;
     align-items: center;
     size : 100%;
+    background-color: #625D52;
+    padding: 2em;
+    color: white;
+    border-radius: 15px;
   }
 
 
@@ -10,8 +14,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
-    border: 1px solid black;
     border-radius: 10px;
   }
 
@@ -37,4 +39,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  mat-icon{
+    color: black;
   }
