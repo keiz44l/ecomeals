@@ -1,0 +1,33 @@
+<mat-card id="favorites">
+    <mat-card-title>
+        <h2>My favorites</h2>
+    </mat-card-title>
+    <div *ngIf="!favorites.length">
+        <p>You don't have any favorite meal yet.</p>
+    </div>
+    <div *ngIf="favorites.length" style="overflow-y: scroll; height:800px;">
+        <div *ngFor="let favorite of favorites">
+            <mat-card id="favorite">
+                <mat-card-title>
+                    <h3>{{favorite.name}}</h3>
+                </mat-card-title>
+                <mat-card-content>
+                    <p>Total price : {{favorite.totalPrice}} €</p>
+                    <h4>Ingredients</h4>
+                    <div *ngFor="let ingredient of favorite.ingredients">
+                        <p>- {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}} , price : {{ingredient.price}} €</p>
+                    </div>
+                    <h4>Instructions</h4>
+                    <div *ngFor="let step of favorite.instructions">
+                        <p>- {{step}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="removeFavorite(favorite.name)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</mat-card>

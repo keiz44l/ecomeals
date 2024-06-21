@@ -1,4 +1,4 @@
-<div *ngIf="!mealsGenerated" id="weeklyPlan">
+<div *ngIf="!generated" id="weeklyPlan">
     <h1>Generate your weekly recipes</h1>
     <div id="my-ingredients">
         <h2>Add new ingredient</h2>
@@ -9,9 +9,11 @@
         </div>  
         <button mat-raised-button color="accent" (click)="addIngredient()">Add</button>
         <h3>Your ingredients : </h3>
-        <div *ngFor="let ingredient of ingredients" id="ingredients">
-            <p>- {{ingredient.name}} : {{ingredient.amount}} {{ingredient.unit}}</p>
-            <i class="material-icons" (click)="deleteIngredient(ingredient)">delete</i>
+        <div style="overflow-y: scroll; height:100px;">
+            <div *ngFor="let ingredient of ingredients" id="ingredients">
+                <p>- {{ingredient.name}} : {{ingredient.amount}} {{ingredient.unit}}</p>
+                <i class="material-icons" (click)="deleteIngredient(ingredient)">delete</i>
+            </div>
         </div>
         <br>
     </div>
@@ -44,16 +46,29 @@
 
 </div>
 
-<div style="overflow-y: scroll; height:800px;" *ngIf="mealsGenerated" id="mealsGenerated">
-    <div *ngIf="mealsGenerated;">
+<div *ngIf="generated" id="mealsGenerated">
+    <div>
         <h2>Meals Generated</h2>
-        <div *ngFor="let meal of meals" id="meal">
-            <h5>{{meal.name}}</h5>
-            <p>Total price : {{meal.totalPrice}} €</p>
-            <h5>Ingredients</h5>
-            <div *ngFor="let ingredient of meal.totalIngredients" id="ingredients">
-                <p>- {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}}</p>
-            </div>
+        <div style="overflow-y: scroll; height:600px;">
+            <mat-card *ngFor="let meal of meals" id="meal">
+                <mat-card-title>
+                    <h3>{{meal.name}}</h3>
+                </mat-card-title>
+                <mat-card-content>
+                    <p>Total price : {{meal.totalPrice}} €</p>
+                    <h4>Ingredients</h4>
+                    <div *ngFor="let ingredient of meal.ingredients">
+                        <p>- {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}} , price : {{ingredient.price}} €</p>
+                    </div>
+                    <h4>Instructions</h4>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="saveMeal(meal)">
+                        <i class="material-icons">favorite</i>
+                        Add favorite
+                    </button>
+                </mat-card-actions>
+            </mat-card>
         </div>
         <div id="buttons">
             <button mat-raised-button color="accent" *ngIf="!user" (click)="generateWeeklyMeals()">Generate other Meals</button>

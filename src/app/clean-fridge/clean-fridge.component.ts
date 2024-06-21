@@ -10,8 +10,8 @@ import { DataService } from '../services/data.service';
 })
 export class CleanFridgeComponent {
 
-    public prompt = 'Your response should be strictly a json format (name, ingredients[name, amount, unit], instructions[instructions]). Generate a random meal with the following ingredients and constraints, respect it fully:';
-    public promptMoreIngredients = 'Your response should be strictly a json format (name, ingredients[name, amount, unit, totalPrice(*1.2) if ingredient not in ingredients], instructions[instructions], totalPrice). Generate a random meal with actual prices in France (not especially french meals), with the following following ingredients and constraints, respect it fully';
+    public prompt = 'Your response should be strictly a json format (name, ingredients[name, amount, unit], instructions[instructions]). Generate a random meal with the following ingredients and constraints, respect it fully. Note that if calories is specified, its per person.';
+    public promptMoreIngredients = 'Your response should be strictly a json format (name, ingredients[name, amount, unit, totalPrice(*1.2) if ingredient not in ingredients], instructions[instructions], totalPrice). Generate a random meal with actual prices in France (not especially french meals), with the following following ingredients and constraints, respect it fully. Note that if calories is specified, its per person.';
     
     public ingredients: any = [];
     public ingredient: any;
@@ -25,6 +25,7 @@ export class CleanFridgeComponent {
     public mealIngredients: any;
     public mealInstructions: any;
     public totalPrice: any;
+    public mealCalories: any;
     public buyIngredients: any;
     public numberPeople: any;
     public maxPrice: any;
@@ -57,20 +58,26 @@ export class CleanFridgeComponent {
         this.prompt = this.promptMoreIngredients + "Note that you can add more ingredients than the ones indicated;";
       }
       this.prompt = this.prompt + "; ingredients I have : " + JSON.stringify(this.ingredients) + " ;";
-      this.prompt = this.prompt + "number of people (they eat good) : " + this.numberPeople + " ; maximum price : " + this.maxPrice + " ; currency : " + "euros" + " ;";
+      this.prompt = this.prompt + "number of people (they eat good) : " + this.numberPeople + " ; maximum price (not per person): " + this.maxPrice + " ; currency : " + "euros" + " ;";
       console.log(this.prompt);
       this.apiService.generateText(this.prompt).subscribe((data: any) => {
         this.mealGenerated = data.candidates[0].content.parts[0].text
         this.mealGenerated = this.mealGenerated.replace('```json', '');
         this.mealGenerated = this.mealGenerated.replace('```', '');
 
-        this.mealGenerated = JSON.parse(this.mealGenerated);
-        this.mealName = this.mealGenerated.name;
-        this.mealIngredients = this.mealGenerated.ingredients;
-        console.log(this.mealIngredients);
-        this.mealInstructions = this.mealGenerated.instructions;
-        this.totalPrice = this.mealGenerated.totalPrice;
-        this.inProgress = false;
+        try {
+          this.mealGenerated = JSON.parse(this.mealGenerated);
+          this.inProgress = false;
+          this.mealName = this.mealGenerated.name;
+          this.mealIngredients = this.mealGenerated.ingredients;
+          this.mealInstructions = this.mealGenerated.instructions;
+          this.totalPrice = this.mealGenerated.totalPrice;
+          this.mealCalories = this.mealGenerated.calories;
+        } catch (error) {
+          console.log('Error generating meal:', error);
+          this.inProgress = false;
+          this.cleanFridge();
+        }
       });
     }
 
@@ -79,20 +86,26 @@ export class CleanFridgeComponent {
       if (this.buyIngredients) {
         this.prompt = this.promptMoreIngredients + ". Note that you can add more ingredients than the ones indicated;";
       }
-      this.prompt = this.prompt + "constraints : " + "ingredients I have : " + JSON.stringify(this.ingredients) + " ; " + "number of people (they eat good) : " + this.numberPeople + " ; + maximum price : " + this.maxPrice + " ; currency : " + "euros" + " ;";
+      this.prompt = this.prompt + "constraints : " + "ingredients I have : " + JSON.stringify(this.ingredients) + " ; " + "number of people (they eat good) : " + this.numberPeople + " ; + maximum price (not per person): " + this.maxPrice + " ; currency : " + "euros" + " ;";
       console.log(this.prompt);
       this.apiService.generateByPreferences(this.userId, this.prompt).subscribe((data: any) => {
         this.mealGenerated = data.candidates[0].content.parts[0].text
         this.mealGenerated = this.mealGenerated.replace('```json', '');
         this.mealGenerated = this.mealGenerated.replace('```', '');
 
-        this.mealGenerated = JSON.parse(this.mealGenerated);
-        this.mealName = this.mealGenerated.name;
-        this.mealIngredients = this.mealGenerated.ingredients;
-        console.log(this.mealIngredients);
-        this.mealInstructions = this.mealGenerated.instructions;
-        this.totalPrice = this.mealGenerated.totalPrice;
-        this.inProgress = false;
+        try {
+          this.mealGenerated = JSON.parse(this.mealGenerated);
+          this.inProgress = false;
+          this.mealName = this.mealGenerated.name;
+          this.mealIngredients = this.mealGenerated.ingredients;
+          this.mealInstructions = this.mealGenerated.instructions;
+          this.totalPrice = this.mealGenerated.totalPrice;
+          this.mealCalories = this.mealGenerated.calories;
+        } catch (error) {
+          console.log('Error generating meal:', error);
+          this.inProgress = false;
+          this.cleanFridgeByPreferences();
+        }
       });
       }
 

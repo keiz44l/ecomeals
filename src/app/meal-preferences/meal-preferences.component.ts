@@ -15,7 +15,8 @@ export class MealPreferencesComponent implements OnInit {
   userId = this.user?.uid || '';
   mail = this.user?.email || '';
   preferences: any = {};
-
+  languages = ['English', 'Spanish', 'French', 'German', 'Italian', 'Portuguese', 'Dutch', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Arabic', 'Hindi', 'Bengali', 'Punjabi', 'Urdu', 'Turkish', 'Vietnamese', 'Thai', 'Swedish', 'Bulgarian', 'Catalan', 'Czech', 'Danish', 'Finnish', 'Greek', 'Hebrew', 'Hungarian', 'Indonesian', 'Latvian', 'Lithuanian', 'Norwegian', 'Polish', 'Romanian', 'Slovak', 'Slovenian', 'Ukrainian', 'Vietnamese', 'Afrikaans', 'Albanian', 'Amharic', 'Armenian', 'Azerbaijani', 'Basque', 'Belarusian', 'Bosnian', 'Croatian', 'Dutch', 'Estonian', 'Filipino', 'Galician', 'Georgian', 'Gujarati', 'Haitian Creole', 'Hausa', 'Hmong', 'Icelandic', 'Igbo', 'Irish', 'Javanese', 'Kannada', 'Kazakh', 'Khmer', 'Lao', 'Latin', 'Macedonian', 'Malagasy', 'Malay', 'Malayalam', 'Maltese', 'Maori', 'Marathi', 'Mongolian', 'Nepali', 'Pashto', 'Persian', 'Serbian', 'Sinhala', 'Somali', 'Swahili', 'Tamil', 'Telugu', 'Uzbek', 'Welsh', 'Yiddish', 'Yoruba', 'Zulu'];
+  language = 'English';
 
   diets = ['Vegetarian', 'Vegan', 'Paleo', 'High-Fiber', 'High-Protein', 'Low-Carb', 'Low-Fat', 'Low-Sodium', 'Low-Sugar', 'Alcohol-Free', 'Balanced', 'Immunity'];
   allergies = ['Gluten', 'Dairy', 'Eggs', 'Soy', 'Wheat', 'Fish', 'Shellfish', 'Tree Nuts', 'Peanuts'];
@@ -26,7 +27,8 @@ export class MealPreferencesComponent implements OnInit {
       caloriesMax: null,
       maxIngredients: null,
       diet: {},
-      allergies: {}
+      allergies: {},
+
     };
   }
 
@@ -76,7 +78,8 @@ export class MealPreferencesComponent implements OnInit {
           shellfish: false,
           treeNuts: false,
           peanuts: false
-        }
+        },
+        language : 'English'
       };
     }
   }

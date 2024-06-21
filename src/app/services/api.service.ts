@@ -44,7 +44,13 @@ export class ApiService {
     public generateText(prompt: string) : Observable<Recipe> {
       return this.http.post<Recipe>(this.url, {"contents":[
             {"role": "user",
-              "parts":[{"text": prompt}]}]});
+              "parts":[{"text": prompt}]}],
+              generation_config: {
+                temperature: 0.7,
+                top_p: 1,
+                top_k: 32,
+                max_output_tokens: 100,
+              }});
     } 
 
     public generateByPrice(prompt: string, price: number) : Observable<Recipe> {
@@ -57,7 +63,11 @@ export class ApiService {
       const filter = this.getPreferences(userId);
       return this.http.post<Recipe>(this.url, {"contents":[
             {"role": "user",
-              "parts":[{"text": prompt + "constraints : " + filter + " ;"}]}]});
+              "parts":[{"text": prompt + "constraints : " + filter + " ;"
+              }]}],
+              generation_config: {
+                temperature: 0.85
+            }});
     }
 
     public generateByIngredients(prompt:string, ingredients:Array<string>, canBuyMore?:boolean, price?:number) : Observable<Recipe> {

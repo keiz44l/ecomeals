@@ -1,0 +1,20 @@
+#favorites{
+    display: flex;
+    justify-content: center;
+    background-color: #625D52;
+    height: 700px; 
+    width: 700px;
+    color : white;
+    align-items: center;
+}
+
+#favorite{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding : 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #31302E;
+}

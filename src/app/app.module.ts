@@ -32,6 +32,7 @@ import { WeeklyMealsGenerationComponent } from './weekly-meals-generation/weekly
 import { MealPreferencesComponent } from './meal-preferences/meal-preferences.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MealPreferencesComponent,
     NavbarComponent,
     DashboardComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,

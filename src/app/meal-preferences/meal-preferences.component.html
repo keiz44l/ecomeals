@@ -1,6 +1,12 @@
 <div class="meal-preferences">
     <h2>My Meal Preferences</h2>
     <form (ngSubmit)="savePreferences()">
+      <div class="form-group">
+        <label>My language</label>
+        <select [(ngModel)]="preferences.language" name="language">
+          <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+        </select>
+      </div>
       <div id="formContainer">
         <div class="form-group">
           <label>Calories range</label>
@@ -12,6 +18,8 @@
           <label>Max ingredients per meal</label>
           <input type="number" [(ngModel)]="preferences.maxIngredients" name="maxIngredients" placeholder="Up to" />
         </div>
+
+
         
         <div class="form-group">
           <label>Diet</label>

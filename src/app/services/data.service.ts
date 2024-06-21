@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, addDoc, collection, getDocs, query, updateDoc, doc, setDoc } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, getDocs, query, updateDoc, doc, setDoc, deleteDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -64,9 +64,50 @@ export class DataService{
   }
 
   async saveMeal(userId: string, meal: any) {
-    await updateDoc(doc(this.firestore, 'users', userId), {
-        // add meal to meals array
-        meals: meal
+    await this.getMeals(userId).then(async (meals: any) => {
+        if (meals) {
+            meals.push(meal);
+            await updateDoc(doc(this.firestore, 'users', userId), {
+                meals: meals
+            });
+        } else {
+            await setDoc(doc(this.firestore, 'users', userId), {
+                meals: [meal]
+            });
+        }
     });
   }
+
+  async getMeals(userId: string) {
+    const querySnapshot = await getDocs(collection(this.firestore, "users"));
+    for (const doc of querySnapshot.docs) {
+        if (doc.data()["userId"] === userId) {
+            return doc.data()["meals"];
+        }
+    }
+    return null;
+  }
+
+  async getMeal(userId: string, mealId: string) {
+      const querySnapshot = await getDocs(collection(this.firestore, "users"));
+      for (const snapshot of querySnapshot.docs) {
+          const doc = snapshot.data();
+          if (doc["userId"] === userId) {
+              return doc["meals"].filter((meal: any) => meal.id === mealId);
+          }
+      }
+      return null;
+  }
+
+  async deleteMeal(userId: string, mealName: string) {
+    await this.getMeals(userId).then(async (meals: any) => {
+        if (meals) {
+            const newMeals = meals.filter((meal: any) => meal.name !== mealName);
+            await updateDoc(doc(this.firestore, 'users', userId), {
+                meals: newMeals
+            });
+        }
+    });
+  }
+
 }

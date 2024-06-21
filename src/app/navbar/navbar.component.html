@@ -25,6 +25,12 @@
       Weekly recipes
     </div>
   </mat-list-item>
+  <mat-list-item *ngIf="isLogged" id="favorites" [routerLink]="'/favorites'">
+    <div class="mat-list-item-content">
+      <i class="material-icons">favorite</i>
+      My favorites
+    </div>
+  </mat-list-item>
   <mat-list-item *ngIf="isLogged" id="preferences" [routerLink]="'/meal-preferences'">
     <div class="mat-list-item-content">
       <i class="material-icons">settings</i>

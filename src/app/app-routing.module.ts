@@ -8,6 +8,7 @@ import { CleanFridgeComponent } from './clean-fridge/clean-fridge.component';
 import { GenerateMealComponent } from './generate-meal/generate-meal.component';
 import { MealPreferencesComponent } from './meal-preferences/meal-preferences.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { authGuard } from './auth.guard';
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'clean-fridge', component: CleanFridgeComponent},
   { path: 'meal-preferences', component: MealPreferencesComponent, canActivate: [authGuard]},
   { path: '', component: DashboardComponent},
+  { path : 'favorites', component: FavoritesComponent}
   
 ];
 
